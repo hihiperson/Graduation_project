@@ -141,4 +141,11 @@
   <select id="isExistsPhone" resultType="java.lang.Integer">
      select count(*) from user where tel = #{phone}
   </select>
+
+  <!--更改头像url-->
+  <update id="updatePicture">
+    update user
+    set picture = #{picture}
+    where user_id = #{userId}
+  </update>
 </mapper>

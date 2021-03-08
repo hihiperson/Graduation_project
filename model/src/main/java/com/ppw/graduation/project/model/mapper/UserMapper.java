@@ -2,6 +2,7 @@ package com.ppw.graduation.project.model.mapper;
 
 
 import com.ppw.graduation.project.model.entity.User;
+import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer userId);
@@ -23,4 +24,6 @@ public interface UserMapper {
     User selectByUname(String uname);
 
     int updateByTelSelective(User record);
+
+    int updatePicture(@Param("picture") String picture, @Param("userId")Integer userId);
 }

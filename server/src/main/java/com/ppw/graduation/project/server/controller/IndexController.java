@@ -1,6 +1,7 @@
 package com.ppw.graduation.project.server.controller;
 
 import com.ppw.graduation.project.model.entity.User;
+import com.ppw.graduation.project.model.mapper.UserMapper;
 import com.ppw.graduation.project.server.service.FileService;
 import com.ppw.graduation.project.server.utils.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,11 +32,13 @@ import java.util.Date;
 //主页
 @Controller
 @RequestMapping("index")
-
 public class IndexController {
 
     @Autowired
     private Environment env;
+
+    @Autowired
+    private UserMapper userMapper;
 
     @Autowired
     private FileService fileService;
@@ -59,7 +62,14 @@ public class IndexController {
         User user = (User) session.getAttribute("user");
         if (user!=null){
             fileService.photoUpload(file, user.getUname());
+            String picture = "../images/"+user.getUname()+".jpg";
+            int res = userMapper.updatePicture(picture, user.getUserId());
+            if (res > 0){
+                user.setPicture(picture);
+                session.setAttribute("user", user);
+                return "redirect:/index/person_index";
+            }
         }
-        return "person_index";
+        return "error";
     }
 }
