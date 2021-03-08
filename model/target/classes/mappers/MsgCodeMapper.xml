@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ppw.graduation.project.model.mapper.MsgCodeMapper" >
+  <resultMap id="BaseResultMap" type="com.ppw.graduation.project.model.entity.MsgCode" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="msg_code" property="msgCode" jdbcType="VARCHAR" />
+    <result column="is_active" property="isActive" jdbcType="TINYINT" />
+    <result column="send_time" property="sendTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, tel, msg_code, is_active, send_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from msg_code
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from msg_code
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ppw.graduation.project.model.entity.MsgCode" >
+    insert into msg_code (id, tel, msg_code, 
+      is_active, send_time)
+    values (#{id,jdbcType=INTEGER}, #{tel,jdbcType=VARCHAR}, #{msgCode,jdbcType=VARCHAR}, 
+      #{isActive,jdbcType=TINYINT}, #{sendTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ppw.graduation.project.model.entity.MsgCode" >
+    insert into msg_code
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="msgCode != null" >
+        msg_code,
+      </if>
+      <if test="isActive != null" >
+        is_active,
+      </if>
+      <if test="sendTime != null" >
+        send_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="msgCode != null" >
+        #{msgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isActive != null" >
+        #{isActive,jdbcType=TINYINT},
+      </if>
+      <if test="sendTime != null" >
+        #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ppw.graduation.project.model.entity.MsgCode" >
+    update msg_code
+    <set >
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="msgCode != null" >
+        msg_code = #{msgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isActive != null" >
+        is_active = #{isActive,jdbcType=TINYINT},
+      </if>
+      <if test="sendTime != null" >
+        send_time = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ppw.graduation.project.model.entity.MsgCode" >
+    update msg_code
+    set tel = #{tel,jdbcType=VARCHAR},
+      msg_code = #{msgCode,jdbcType=VARCHAR},
+      is_active = #{isActive,jdbcType=TINYINT},
+      send_time = #{sendTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--根据手机号-设置短信验证码为空-->
+  <update id="updateExpirePhoneCode">
+  UPDATE msg_code SET is_active=0 where is_active = 1 and tel=#{phone} and msg_code=#{msgCode}
+</update>
+</mapper>
