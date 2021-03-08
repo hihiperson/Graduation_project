@@ -1,0 +1,22 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+#所有class后缀的文件
+*.class
+#所有jar后缀的文件
+*.jar
+*.iml
+*.war
+#.idea文件
+.idea
+#out
+out
+#数据库连接参数 文件
+spring-jdbc.xml
+mybatis-config.xml
