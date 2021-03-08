@@ -1,0 +1,69 @@
+#应用配置
+server:
+  port: 9090
+  servlet:
+    context-path: /laboratory
+
+spring:
+  #html相关配置
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    check-template-location: true
+
+  #rabbitmq配置
+  rabbitmq:
+    virtual-host: /Graduation
+    host: 192.168.0.100
+    port: 5672
+    username: admin
+    password: admin
+    listener:
+      simple:
+        concurrency: 10
+        max-concurrency: 20
+        prefetch: 5
+
+  #redis配置
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+
+#数据库配置
+datasource:
+  url: jdbc:mysql://127.0.0.1:3306/graduation_project?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+  username: root
+  password: 12138
+
+#图片临时存储路径
+file:
+  #d:/temp/file/photo/
+  filePhoto: classpath:/static/images/
+
+#mybatis
+mybatis:
+  config-location: classpath:mybatis-config.xml
+  check-config-location: true
+  mapper-locations: classpath:mappers/*.xml
+
+#rabbitmq配置
+rabbitmq:
+  log:
+    exchange: laboratory.log.exchange
+    queue: laboratory.log.queue
+    routing:
+      key: laboratory.log.routing.key
+
+#redisson单节点与集群
+redisson:
+  url:
+    single: redis://127.0.0.1:6379
+#    cluster: redis://127.0.0.1:7100, redis://127.0.0.1:7200, redis://127.0.0.1:7300, \
+#      redis://127.0.0.1:7101, redis://127.0.0.1:7201, redis://127.0.0.1:7301
+
+#SMS网建网发送短信配置
+#填入网建的用户名，密钥
+sms:
+  uid: 小小新手
+  key: d41d8cd98f00b204e980

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>注册页面</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="../download/Google_Font.css" th:href="@{/download/Google_Font.css}">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css" th:href="@{/plugins/icheck-bootstrap/icheck-bootstrap.min.css}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../dist/css/adminlte.min.css" th:href="@{/dist/css/adminlte.min.css}">
+  
+<!--获取-->  
+<style type="text/css">
+.msgs{width:80px;line-height:25px;font-size:12px;text-align:center;cursor:pointer;}
+form .msgs1{font-size:16px;}
+</style>
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <a href="#"><b>注册</b>界面</a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+	  <p class="login-box-msg">(¬‿¬)注册后使用账号密码登录</p>
+
+      <form action="#" method="post" th:action="@{/account/sub_register}" onsubmit="return check_submit();">
+		<div class="input-group mb-3">
+          <input id="uname" name="uname" th:value="${session.user!=null?session.user.uname:''}" type="text" class="form-control" placeholder="账号">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span id="hint_uname" class="text-danger" style="font-size: 14px;"></span>
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group mb-3">
+          <input id="upwd" name="upwd" type="password" th:value="${session.user!=null?session.user.upwd:''}" class="form-control" placeholder="密码">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span id="hint_upwd" class="text-danger" style="font-size: 14px;"></span>
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div><div class="input-group mb-3">
+          <input id="upwd2" type="password" class="form-control" placeholder="确认密码">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span id="hint_upwd2" class="text-danger" style="font-size: 14px;"></span>
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+		<div class="input-group mb-3">
+          <input id="tel" name="tel" th:value="${session.user!=null?session.user.tel:''}" type="text" class="form-control" placeholder="手机号">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span id="hint_tel" class="text-danger" style="font-size: 14px;"></span>
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+		<div class="input-group mb-3">
+          <input id="msgCode" name="msgCode" type="text" class="form-control col-7" placeholder="验证码">
+		  <button id="getNum" class="btn btn-primary btn-block col-5 msgs" onclick="getMsgCode()">获取短信验证码</button>
+        </div>
+        <span id="hint_msgCode" class="text-danger" style="font-size: 14px;"></span>
+        <div class="row">
+
+          <!-- /.col -->
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary btn-block">注册</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+      <!-- /.social-auth-links -->
+	  <br/>
+      <p class="mb-0">
+        <a href="../login.html" class="text-center" th:href="@{/account/login}"><small>已有账号，去登陆》</small></a>
+      </p>
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+<script src="../plugins/jquery/jquery.min.js" th:src="@{/plugins/jquery/jquery.min.js}"></script>
+<!-- Bootstrap 4 -->
+<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js" th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!-- AdminLTE App -->
+<script src="../dist/js/adminlte.min.js" th:src="@{/dist/js/adminlte.min.js}"></script>
+
+<!--判断用户是否存在-->
+<script src="../myself/account.js" th:src="@{/myself/account.js}"></script>
+
+</body>
+</html>

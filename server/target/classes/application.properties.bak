@@ -1,0 +1,30 @@
+#应用端口
+server.port=9090
+server.servlet.context-path=/laboratory
+
+#html的相关配置
+#声明thymeleaf使用非严格的html。
+#spring.thymeleaf.content-type=text/html
+#spring.thymeleaf.mode=LEGACYHTML5
+spring.thymeleaf.cache=false
+
+#数据库配置
+datasource.url = jdbc:mysql://127.0.0.1:3306/graduation_project?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC 
+datasource.username = root
+datasource.password = 12138
+
+#mybatis
+mybatis.config-location=classpath:mybatis-config.xml
+mybatis.check-config-location=true
+mybatis.mapper-locations=classpath:mappers/*.xml
+
+#redisson单节点与集群
+redisson.url.single=redis://127.0.0.1:6379
+redisson.url.cluster=redis://127.0.0.1:7100, redis://127.0.0.1:7200, redis://127.0.0.1:7300, \
+redis://127.0.0.1:7101, redis://127.0.0.1:7201, redis://127.0.0.1:7301
+
+#SMS网建网发送短信配置
+#填入网建网的登录用户名
+sms.uid=小小新手
+#填入密钥
+sms.key=d41d8cd98f00b204e980
