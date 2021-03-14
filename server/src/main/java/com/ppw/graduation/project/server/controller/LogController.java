@@ -50,7 +50,6 @@ public class LogController {
         try {
             //TODO: 写真正的核心业务逻辑
             Long time1 = Dynamic.useTime;
-            System.out.println("========time11111111==="+time1);
             int res = userMapper.insertSelective(user);
             if (res > 0){
                 String uname = "达令";

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ppw.graduation.project.model.mapper.ConsumablesMapper" >
+  <resultMap id="BaseResultMap" type="com.ppw.graduation.project.model.entity.Consumables" >
+    <id column="cid" property="cid" jdbcType="INTEGER" />
+    <result column="department" property="department" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="factory" property="factory" jdbcType="VARCHAR" />
+    <result column="specs" property="specs" jdbcType="VARCHAR" />
+    <result column="num" property="num" jdbcType="DECIMAL" />
+    <result column="unit_price" property="unitPrice" jdbcType="DECIMAL" />
+    <result column="total_price" property="totalPrice" jdbcType="DECIMAL" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="is_active" property="isActive" jdbcType="TINYINT" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cid, department, name, unit, factory, specs, num, unit_price, total_price, remarks, 
+    is_active, picture, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from consumables
+    where cid = #{cid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from consumables
+    where cid = #{cid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ppw.graduation.project.model.entity.Consumables" >
+    insert into consumables (cid, department, name, 
+      unit, factory, specs, 
+      num, unit_price, total_price, 
+      remarks, is_active, picture, 
+      create_time)
+    values (#{cid,jdbcType=INTEGER}, #{department,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{unit,jdbcType=VARCHAR}, #{factory,jdbcType=VARCHAR}, #{specs,jdbcType=VARCHAR}, 
+      #{num,jdbcType=DECIMAL}, #{unitPrice,jdbcType=DECIMAL}, #{totalPrice,jdbcType=DECIMAL}, 
+      #{remarks,jdbcType=VARCHAR}, #{isActive,jdbcType=TINYINT}, #{picture,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ppw.graduation.project.model.entity.Consumables" >
+    insert into consumables
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="department != null" >
+        department,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="factory != null" >
+        factory,
+      </if>
+      <if test="specs != null" >
+        specs,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="unitPrice != null" >
+        unit_price,
+      </if>
+      <if test="totalPrice != null" >
+        total_price,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="isActive != null" >
+        is_active,
+      </if>
+      <if test="picture != null" >
+        picture,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cid != null" >
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="factory != null" >
+        #{factory,jdbcType=VARCHAR},
+      </if>
+      <if test="specs != null" >
+        #{specs,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=DECIMAL},
+      </if>
+      <if test="unitPrice != null" >
+        #{unitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPrice != null" >
+        #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="isActive != null" >
+        #{isActive,jdbcType=TINYINT},
+      </if>
+      <if test="picture != null" >
+        #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ppw.graduation.project.model.entity.Consumables" >
+    update consumables
+    <set >
+      <if test="department != null" >
+        department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="factory != null" >
+        factory = #{factory,jdbcType=VARCHAR},
+      </if>
+      <if test="specs != null" >
+        specs = #{specs,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=DECIMAL},
+      </if>
+      <if test="unitPrice != null" >
+        unit_price = #{unitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPrice != null" >
+        total_price = #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="isActive != null" >
+        is_active = #{isActive,jdbcType=TINYINT},
+      </if>
+      <if test="picture != null" >
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where cid = #{cid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ppw.graduation.project.model.entity.Consumables" >
+    update consumables
+    set department = #{department,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      factory = #{factory,jdbcType=VARCHAR},
+      specs = #{specs,jdbcType=VARCHAR},
+      num = #{num,jdbcType=DECIMAL},
+      unit_price = #{unitPrice,jdbcType=DECIMAL},
+      total_price = #{totalPrice,jdbcType=DECIMAL},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      is_active = #{isActive,jdbcType=TINYINT},
+      picture = #{picture,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where cid = #{cid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -79,7 +79,7 @@ public class AccountController {
             }
             rabbitService.mqSendLog(sysLog);
 
-            return "redirect:/index/person_index";
+            return "redirect:/index2/person_index";
         }else {
             return "redirect:/account/register";
         }
@@ -132,8 +132,6 @@ public class AccountController {
     public String sub_login( HttpServletRequest request, Model model, String uname, String upwd){
         User user = accountService.selectByUname(uname);
         if (user != null) {
-            System.out.println(user.getUpwd()+"-----"+user.getUname());
-            System.out.println(upwd+"-----"+uname);
             if(uname.equals(user.getUname()) && upwd.equals(user.getUpwd())){
                 //将用户信息存入session
                 HttpSession session = request.getSession();
@@ -153,7 +151,15 @@ public class AccountController {
                     e.printStackTrace();
                 }
                 rabbitService.mqSendLog(sysLog);
-                return "person_index";
+                if ( user.getLevel()==4) {
+                    return "redirect:/index2/person_index";
+                }else if (user.getLevel()==1 || user.getLevel()==2){
+                    return "redirect:/index/admin_index";
+                }else if(user.getLevel()==3){
+                    return "redirect:/index3/rear_index";
+                }else {
+                    return "error";
+                }
             }else {
                 model.addAttribute("err", "账户或密码错误~");
                 return "login";

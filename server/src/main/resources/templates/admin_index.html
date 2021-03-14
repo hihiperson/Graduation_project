@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>管理员首页</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="../download/Google_Font.css">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+</head>
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<div class="wrapper">
+  <!-- Navbar导航栏 -->
+  <div th:replace="person_index::index_nav"></div>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container主边栏容器 -->
+  <div th:replace="person_index::index_aside"></div>
+  <!-- Content Wrapper. Contains page content内容包装器。包含页面内容 -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">&nbsp;&nbsp;首页</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Edit</a></li>
+              <li class="breadcrumb-item active">管理员</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- Info boxes -->
+        <div class="row">
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box">
+              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">仪器申请</span>
+                <span class="info-box-number">
+                  10
+                  <small>↑</small>
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">未归还</span>
+                <span class="info-box-number">60</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+
+          <!-- fix for small devices only -->
+          <div class="clearfix hidden-md-up"></div>
+
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+
+              <div class="info-box-content">
+					<span class="info-box-text">出入库</span>
+					  <span class="info-box-number">
+                  10
+                  <small>↑</small>
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">权限分配</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title">上周使用详情</h5>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-7">
+                    <p class="text-center">
+                      <strong>这个表，没找到数据入口（可能后期不要了）</strong>
+                    </p>
+
+                    <div class="chart">
+                      <!-- Sales Chart Canvas -->
+                      <canvas id="salesChart" height="180" style="height: 180px;"></canvas>
+                    </div>
+                    <!-- /.chart-responsive -->
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-md-5">
+                    <p class="text-center">
+                      <strong>信息统计</strong>
+                    </p>
+
+                    <div class="progress-group">
+                      仪器申请
+                      <span class="float-right"><b>100</b>/200</span>
+                      <div class="progress progress-sm">
+                        <div class="progress-bar bg-primary" style="width: 50%"></div>
+                      </div>
+                    </div>
+                    <!-- /.progress-group -->
+
+                    <div class="progress-group">
+                      入库通过
+                      <span class="float-right"><b>70</b>/100</span>
+                      <div class="progress progress-sm">
+                        <div class="progress-bar bg-success" style="width: 70%"></div>
+                      </div>
+                    </div>
+
+                    <!-- /.progress-group -->
+                    <div class="progress-group">
+                      <span class="progress-text">仪器耗损</span>
+                      <span class="float-right"><b>50</b>/200</span>
+                      <div class="progress progress-sm">
+                        <div class="progress-bar bg-danger" style="width: 40%"></div>
+                      </div>
+                    </div>
+
+                    <!-- /.progress-group -->
+                    <div class="progress-group">
+                      设备维护
+                      <span class="float-right"><b>9</b>/10</span>
+                      <div class="progress progress-sm">
+                        <div class="progress-bar bg-warning" style="width: 90%"></div>
+                      </div>
+                    </div>
+                    <!-- /.progress-group -->
+                  </div>
+                  <!-- /.col -->
+                </div>
+                <!-- /.row -->
+              </div>
+              <!-- ./card-body -->
+              <div class="card-footer">
+                <div class="row">
+                  <div class="col-sm-3 col-6">
+                    <div class="description-block border-right">
+                      <span class="description-percentage text-info"><i class="fas fa-caret-up"></i> 17%</span>
+                      <p class="description-text">申请使用</p>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+				  <div class="col-sm-3 col-6">
+                    <div class="description-block">
+                      <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 18%</span>
+
+                      <p class="description-text">新增设备</p>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-sm-3 col-6">
+                    <div class="description-block border-right">
+                      <span class="description-percentage text-danger"><i class="fas fa-caret-down"></i> 10%</span>
+                    
+                      <p class="description-text">仪器耗损</p>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-sm-3 col-6">
+                    <div class="description-block border-right">
+                      <span class="description-percentage text-warning"><i class="fas fa-caret-up"></i> 20%</span>
+                    
+                      <p class="description-text">维护效率</p>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                  <!-- /.col -->
+                </div>
+                <!-- /.row -->
+              </div>
+              <!-- /.card-footer -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+      </div><!--/. container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Control Sidebar控件侧边栏 -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+    All rights reserved.
+    <div class="float-right d-none d-sm-inline-block">
+      （本人仅作毕设使用，不参与商业用途）<b>Version</b> 1.0-rc
+    </div>
+  </footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED SCRIPTS -->
+<!-- jQuery -->
+<script src="../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../dist/js/adminlte.js"></script>
+
+<!-- PAGE PLUGINS -->
+<!-- jQuery Mapael -->
+<script src="../plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+<script src="../plugins/raphael/raphael.min.js"></script>
+<script src="../plugins/jquery-mapael/jquery.mapael.min.js"></script>
+<script src="../plugins/jquery-mapael/maps/usa_states.min.js"></script>
+<!-- ChartJS -->
+<script src="../plugins/chart.js/Chart.min.js"></script>
+
+<!-- AdminLTE for demo purposes -->
+<script src="../dist/js/demo.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="../dist/js/pages/dashboard2.js"></script>
+</body>
+</html>

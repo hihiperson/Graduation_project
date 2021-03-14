@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>后勤人员</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="../download/Google_Font.css">
+    <link rel="stylesheet" href="../download/form.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+ 
+  
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  <!-- Navbar导航栏 -->
+  <div th:replace="person_index::index_nav"></div>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container主边栏容器 -->
+  <div th:replace="person_index::index_aside"></div>
+
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>用户中心</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">User Profile</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-3">
+
+            <!-- Profile Image -->
+            <div class="card card-primary card-outline">
+              <div class="card-body box-profile">
+                <div class="text-center">
+                  <img class="profile-user-img img-fluid img-circle"
+                       src="./dist/img/user4-128x128.jpg"
+                       alt="User profile picture">
+                </div>
+
+                <h3 class="profile-username text-center">后勤人员</h3>
+
+                <p class="text-muted text-center">职工号：1234567898</p>
+
+                <ul class="list-group list-group-unbordered mb-3">
+				  <li class="list-group-item">
+                    <b>维修申请</b> <a class="float-right">13</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>入库申请</b> <a class="float-right">3</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>出库申请</b> <a class="float-right">5</a>
+                  </li>
+                </ul>
+
+               <a href="#" class="btn btn-primary btn-block"><b>批量申请</b></a>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+          
+          </div>
+          <!-- /.col -->
+          <div class="col-md-9">
+            <div class="card">
+              <div class="card-header p-2">
+                <ul class="nav nav-pills">
+                  
+                  <li class="nav-item"><a class="nav-link active" href="#timeline" data-toggle="tab">维修申请</a></li>      
+				  <li class="nav-item"><a class="nav-link" href="#test" data-toggle="tab">入库申请</a></li>
+				  <li class="nav-item"><a class="nav-link" href="#five-pane" data-toggle="tab">出库申请</a></li>
+                </ul>
+              </div><!-- /.card-header -->
+              <div class="card-body">
+		
+                <div class="tab-content">
+				
+
+                  <div class="active tab-pane" id="timeline">
+				    <!--维修页面-->
+                    <!-- The timeline -->
+                    <div class="timeline timeline-inverse">
+                      <!-- timeline time label -->
+                      <div class="time-label">
+                        <span class="bg-success">
+                          三天内
+                        </span>
+                      </div>
+                      <!-- /.timeline-label -->
+
+					  <!-- timeline item -->
+                      <div>
+						<i class="fas fa-user bg-info"></i>
+                        
+
+                        <div class="timeline-item">
+                          <span class="time">小潘12345678910</span>
+
+                          <h3 class="timeline-header"><b>实训楼：</b> <a href="#">试剂</a></h3>
+
+                          <div class="timeline-body">
+                            描述：好像泄露了，黑色烟，刺激性气味，闻了会睡不着
+						
+							<small class="float-right"><a href="#">好了</a> &nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">放弃</a></small>
+                          </div>
+                        </div>
+                      </div>
+                      
+					  <!-- END timeline item -->
+                      <!-- timeline time label -->
+                      <!-- END timeline item -->
+                      <!-- timeline item -->
+                      <div>
+
+                        <i class="fas fa-user bg-info"></i>
+
+                        <div class="timeline-item">
+                          <span class="time"> 小小13245698710</span>
+
+                          <h3 class="timeline-header"><b>教学楼1栋：</b><a href="#"> 课桌</a></h3>
+
+                          <div class="timeline-body">
+                            描述：桌子发霉了，有的桌角都没了
+							<small class="float-right"><a href="#">好了</a> &nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">放弃</a></small>	
+                          </div>
+                        </div>
+                      </div>
+                      <!-- END timeline item -->
+                      <!-- timeline time label -->
+                      <div class="time-label">
+                        <span class="bg-danger">
+                          更早之前
+                        </span>
+                      </div>
+                      <!-- /.timeline-label -->
+                      <!-- timeline item -->
+					    <!-- timeline item -->
+                      <div>
+                        <i class="fas fa-user bg-info"></i>
+
+                        <div class="timeline-item">
+                          <span class="time"> 小明123465478910</span>
+                          
+
+                          <h3 class="timeline-header"><b>实训楼：</b><a href="#"> 电脑</a></h3>
+
+                          <div class="timeline-body">
+                            描述：晚上8点后再来维修
+							<small class="float-right"><a href="#">好了</a> &nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">放弃</a></small>	
+                          </div>
+                        </div>
+                      </div>
+                      <!-- END timeline item -->
+					  
+					  <div>
+                        <i class="fas fa-user bg-info"></i>
+
+                        <div class="timeline-item">
+
+                          <a class="timeline-header" href="#">所有申请 (13)……</a>
+
+                        </div>
+                      </div>
+                      <!-- END timeline item -->
+                      <!-- timeline time label -->
+                      <!-- END timeline item -->
+                      <div>
+                        <i class="far fa-clock bg-gray"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.tab-pane -->
+				  
+				  <!--入库申请页面-->	
+                  <div class="tab-pane" id="test">
+                    <div class="timeline timeline-inverse">
+                      <!-- timeline time label -->
+                      <div class="time-label">
+                        <span class="bg-danger">
+                          教务审批
+                        </span>
+                      </div>
+
+
+                      <!-- END timeline item -->
+                      <!-- timeline item -->
+                      <div>
+                        <i class="fas fa-user bg-info"></i>
+
+                        <div class="timeline-item">
+                          <span class="time"><i class="far fa-clock"></i> 5 day ago</span>
+
+                          <h3 class="timeline-header border-0"><a href="#">审批中</a>&nbsp;&nbsp; 计算机系耗材购买（2020.01.01）
+                          </h3>
+                        </div>
+                      </div>
+					  <div>
+                        <i class="fas fa-user bg-info"></i>
+
+                        <div class="timeline-item">
+                          <span class="time"><i class="far fa-clock"></i> 5 day ago</span>
+
+                          <h3 class="timeline-header border-0"><a href="#">待审批</a> &nbsp;&nbsp; 计算机系课本购买（2020.02.01）
+                          </h3>
+                        </div>
+                      </div>
+                      <!-- END timeline item -->
+                      <!-- timeline time label -->
+                      <div class="time-label">
+                        <span class="bg-info">
+                          系部审批
+                        </span>
+                      </div>
+                      <!-- /.timeline-label -->
+					                        <div>
+                        <i class="fas fa-user bg-info"></i>
+
+                        <div class="timeline-item">
+                          <span class="time"><i class="far fa-clock"></i> 5 day ago</span>
+
+                          <h3 class="timeline-header border-0"><a href="#">审批通过</a> &nbsp;&nbsp; 计算机系课本购买（2020.02.01）
+                          </h3>
+                        </div>
+                      </div>
+                      <!-- END timeline item -->
+                      <!-- timeline item -->
+                      <div>
+                        <i class="fas fa-user bg-info"></i>
+
+                        <div class="timeline-item">
+                          <span class="time"><i class="far fa-clock"></i> 5 day ago</span>
+
+                          <h3 class="timeline-header border-0"><a href="#">待审批</a> 败家之眼键盘申请
+                          </h3>
+                        </div>
+                      </div>
+					  <!-- END timeline item -->
+					  <div class="time-label">
+                        <span class="bg-success">
+                          正在发起
+                        </span>
+                      </div>
+                      <!-- /.timeline-label -->
+					                        <div>
+                        <i class="fas fa-user bg-info"></i>
+
+                        <div class="timeline-item">
+                          <span class="time"><i class="far fa-clock"></i> 5 day ago</span>
+
+                          <h3 class="timeline-header border-0"><a href="#">2021.1.28</a> 败家之眼申请使用
+                          </h3>
+                        </div>
+                      </div>
+                      <!-- END timeline item -->
+                      <div>
+                        <i class="far fa-clock bg-gray"></i>
+                      </div>
+                  </div>
+                  </div>
+				<!--入库申请页面结束-->	
+                  <!-- /.tab-pane -->
+
+
+				  <!--出库申请页面-->	
+                  <div class="tab-pane" id="five-pane">
+                    <div class="timeline timeline-inverse">
+                      <!-- timeline time label -->
+                      <div class="time-label">
+                        <span class="bg-danger">
+                          教务审批
+                        </span>
+                      </div>
+
+
+                      <!-- END timeline item -->
+                      <!-- timeline item -->
+
+					  <div>
+                        <i class="fas fa-user bg-info"></i>
+
+                        <div class="timeline-item">
+                          <span class="time"><i class="far fa-clock"></i> 5 day ago</span>
+
+                          <h3 class="timeline-header border-0"><a href="#">审批通过</a> &nbsp;&nbsp; 19年12月耗材报废清单（2020.02.01）
+                          </h3>
+                        </div>
+                      </div>
+                      <!-- END timeline item -->
+                      <!-- timeline time label -->
+                      <div class="time-label">
+                        <span class="bg-info">
+                          系部审批
+                        </span>
+                      </div>
+                      <!-- /.timeline-label -->
+					                        <div>
+                        <i class="fas fa-user bg-info"></i>
+
+                        <div class="timeline-item">
+                          <span class="time"><i class="far fa-clock"></i> 5 day ago</span>
+
+                          <h3 class="timeline-header border-0"><a href="#">审批通过</a> &nbsp;&nbsp; 19年12月耗材报废清单（2020.02.01）
+                          </h3>
+                        </div>
+                      </div>
+                      <!-- END timeline item -->
+                      <!-- timeline item -->
+                      <div>
+                        <i class="fas fa-user bg-info"></i>
+
+                        <div class="timeline-item">
+                          <span class="time"><i class="far fa-clock"></i> 5 day ago</span>
+
+                          <h3 class="timeline-header border-0"><a href="#">待审批</a>&nbsp;&nbsp; 2020年12月耗材报销清单
+                          </h3>
+                        </div>
+                      </div>
+					  <!-- END timeline item -->
+					  <div class="time-label">
+                        <span class="bg-success">
+                          正在发起
+                        </span>
+                      </div>
+                      <!-- /.timeline-label -->
+					                        <div>
+                        <i class="fas fa-user bg-info"></i>
+
+                        <div class="timeline-item">
+                          <span class="time"><i class="far fa-clock"></i> 5 day ago</span>
+
+                          <h3 class="timeline-header border-0"><a href="#">2021.1.28</a> &nbsp;&nbsp; 2020年12月耗材报销清单
+                          </h3>
+                        </div>
+                      </div>
+                      <!-- END timeline item -->
+                      <div>
+                        <i class="far fa-clock bg-gray"></i>
+                      </div>
+                  </div>
+                  </div>
+				<!--出库申请页面结束-->	
+				  
+				  
+				  
+				  </div>
+                  <!-- /.tab-pane -->
+				  
+                </div>
+               <!-- /.tab-content -->
+              </div><!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="float-right d-none d-sm-block">
+      <b>Version</b> 1.0
+    </div>
+    <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../dist/js/demo.js"></script>
+<script type="text/javascript">
+    // 弹窗
+	function showWindow() {
+        $('#showdiv').show();  //显示弹窗
+        $('#cover').css('display', 'block'); //显示遮罩层
+        
+    }
+	// 关闭弹窗
+    function closeWindow() {
+		$('#showdiv').hide();  //隐藏弹窗
+        $('#cover').css('display', 'none');   //显示遮罩层
+    }
+</script>
+</body>
+</html>

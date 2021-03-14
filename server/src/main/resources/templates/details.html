@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>仪器详情</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="../download/Google_Font.css" th:href="@{/download/Google_Font.css}">
+  <link rel="stylesheet" href="../download/form.css" th:href="@{/download/form.css}">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../dist/css/adminlte.min.css" th:href="@{/dist/css/adminlte.min.css}">
+  <!--<script src="./https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>-->
+	
+</head>
+<body class="hold-transition sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+  <!-- Navbar导航栏 -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links左侧导航栏链接 -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="../index.html" class="nav-link">Home</a>
+      </li>
+    </ul>
+
+    <!-- SEARCH FORM 搜索表单-->
+    <form class="form-inline ml-3">
+      <div class="input-group input-group-sm">
+        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+        <div class="input-group-append">
+          <button class="btn btn-navbar" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <!-- Right navbar links右侧导航栏链接 -->
+    <ul class="navbar-nav ml-auto">
+      <!-- Notifications Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-bell"></i>
+          <!--<span class="badge badge-warning navbar-badge">15</span>-->
+          <span class="badge badge-danger navbar-badge">15</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <span class="dropdown-item dropdown-header">15 Notifications</span>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-envelope mr-2"></i> 4 new messages
+            <span class="float-right text-muted text-sm">3 mins</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-users mr-2"></i> 8 friend requests
+            <span class="float-right text-muted text-sm">12 hours</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-file mr-2"></i> 3 new reports
+            <span class="float-right text-muted text-sm">2 days</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+          <i class="fas fa-expand-arrows-alt"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+          <i class="fas fa-th-large"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container主边栏容器 -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="www.glutnn.cn" class="brand-link">
+      <img src="../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">桂林理工大学</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="../images/person/default.jpg" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">谭教授</a>
+        </div>
+      </div>
+
+      <!-- SidebarSearch Form -->
+      <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+         <!-- <li class="nav-item menu-open"> -->
+		 <li class="nav-item">
+            <a href="./index.html" class="nav-link active">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                管理员界面
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+		  </li>
+		 <li class="nav-item">
+            <a href="./person.html" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                普通用户界面
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+		  </li>
+		  
+		  <li class="nav-item">
+            <a href="./admin_person.html" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                后勤人员界面
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                数据展示
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="./chart.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>报表</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./chart.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>表单</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+                耗材预约
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="./apply_all.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>所有设备</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./apply_departments.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>计算机系</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./apply_departments.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>经管系</p>
+                </a>
+              </li>
+			  <li class="nav-item">
+                <a href="./apply_departments.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>土木系</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-header">小标题</li>
+         
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                预留？
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+		  </li>
+
+
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+  
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>仪器详情</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">E-commerce</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+      <!-- Default box -->
+      <div class="card card-solid">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-10 col-sm-4">
+              <div class="col-10">
+                <img src="../images/consumables/photo1.png" class="product-image" alt="Product Image">
+              </div>
+			  <div class="col-12 product-image-thumbs">
+                <div class="product-image-thumb active"><img src="../images/consumables/photo1.png" alt="Product Image"></div>
+                <div class="product-image-thumb" ><img src="../images/consumables/photo2.png" alt="Product Image"></div>
+                <div class="product-image-thumb" ><img src="../images/consumables/photo3.jpg" alt="Product Image"></div>
+               
+              </div>
+            </div>
+			
+			<!--这里是隐藏信息-->
+			<!-- 遮罩层 -->
+			<div id="cover"
+				 style="background: #000; position: absolute; left: 0px; top: 0px; width: 100%; filter: alpha(opacity=30); opacity: 0.3; display: none; z-index: 2 ">
+			</div>
+			<!-- 弹窗(预约设备) -->
+			<div id="showdiv1"
+				 style="width: 50%; margin: 0 auto; display: none; position: absolute; top: 7%; left: 25%; z-index: 3; ">
+				<!-- 内容 -->
+
+				<div class = "basic-grey ">
+					<form action="" method="post" class="STYLE-NAME">
+					<h1><strong>耗材预约</strong>
+					<span>请填写申请表</span>
+					</h1>
+                        <label>
+                        <span><b>用户:</b></span>
+                        <input disabled="disabled" id="te_name" type="text" name="te_name" placeholder="哈哈哈" />
+                        </label>
+					<label>
+					<span><b>耗材名称:</b></span>
+					<input id="01" disabled="disabled"  type="text" name="name" placeholder="水泥砖" />
+					</label>
+					<label>
+					<span><b>耗材单位:</b></span>
+					<input id="02" disabled="disabled"  type="text" name="name" placeholder="块" />
+					</label>
+                        <label>
+                            <span><b>库存:</b></span>
+                            <input id="05" disabled="disabled"  type="text" name="name" placeholder="100" />
+                        </label>
+                        <label>
+					<span><b>借用数量:</b></span>
+					<input id="3" type="text" name="name" placeholder="20" />
+					</label>
+					<label>
+					<span><b>预约时间:</b></span>
+					<input type="Date" name="rq">
+					</label>
+					<label>
+					<span><b>申请天数:</b></span>
+					<input type="text" name="rq" placeholder="无需归还填写：0">
+					</label>
+					<label>
+					<span><b>申请理由:</b></span>
+					<textarea id="message" name="message" placeholder="实训使用"></textarea>
+					</label>
+					<!-- <label> -->
+					<!-- <span>Subject :</span><select name="selection"> -->
+					<!-- <option value="Job Inquiry">Job Inquiry</option> -->
+					<!-- <option value="General Question">General Question</option> -->
+					<!-- </select> -->
+					<!-- </label> -->
+					<label>
+					<span>&nbsp;</span>
+					<input type="button" class="button" value="提交" onclick="closeWindow()"/>
+					</label>
+					</form>
+				 </div>
+			</div>	
+			
+			<!-- 弹窗(设备管理) -->
+			<div id="showdiv2"
+				 style="width: 50%; margin: 0 auto; display: none; position: absolute; top: 7%; left: 25%; z-index: 3; ">
+				<!-- 内容 -->
+
+				<div class = "basic-grey ">
+					<form action="" method="post" class="STYLE-NAME">
+					<h1><strong>管理设备</strong>
+					<span>请填写更新信息</span>
+					</h1>
+					<label>
+					<span><b>耗材名称:</b></span>
+					<input id="11" type="text" name="name" placeholder="干燥箱A柜子" />
+					</label>
+					<label>
+					<span><b>耗材介绍:</b></span>
+					<textarea id="22" name="message" placeholder="其余药品购买需要分别成册，对于管理，需要对每种保存地点编号，比如，干燥箱A柜子a冰箱1这样编写，然后每种药品放好，记录电子版，记录量，位置，化学式，名称，保存方式，日期，价格，公司，购买人等(记得归类)。最好在最上面写清楚分类方法，电子版的好处是方便直接搜索所需，每个人如果添置药品或者用完可记得时时更新。"></textarea>
+					</label>
+					<label>
+					<span>耗材状态 :</span><select name="selection">
+					<option value="zaixian">在线</option>
+					<option value="weiguihuan">未归还</option>
+					<option value="weihu">维护</option>
+					</select>
+					</label>
+					
+					<label>
+					<span>耗材类型 :</span><select name="selection">
+					<option value="zaixian">低值易耗品</option>
+					<option value="weiguihuan">高值易耗品</option>
+					<option value="weihu">没啥用</option>
+					</select>
+					</label>
+					
+					<label>
+					<span><b>耗材编号:</b></span>
+					<input id="shebei_num" type="text" name="shebei_num" placeholder="51000" />
+					</label>
+					<label>
+					<span><b>数量:</b></span>
+					<input id="1" type="text" name="shebei_name" placeholder="5" />
+					</label>
+					<label>
+					<span><b>耗材规格:</b></span>
+					<input id="2" type="text" name="shebei_name" placeholder="大" />
+					</label>
+					<label>
+					<span><b>耗材价值:</b></span>
+					<input id="ssv3-location-url4" type="text" name="shebei_name" placeholder="1000yuan" />
+					</label>
+					<label>
+					<span><b>放置地点:</b></span>
+					<input id="5" type="text" name="shebei_name" placeholder="实训楼A400" />
+					</label>
+					<label>
+					<span><b>联系人:</b></span>
+					<input id="6" type="text" name="shebei_name" placeholder="保安队长&nbsp;&nbsp;12345678910" />
+					</label>
+					<label>
+					<span>&nbsp;</span>
+					<input type="button" class="button" value="提交" onclick="closeWindow()"/>
+					</label>
+					</form>
+				 </div>
+			</div>	
+			<!--这里是隐藏信息_结束-->			
+			
+            <div class="col-10 col-sm-8">
+              <h3 class="my-3">水泥砖（name）</h3>
+<!--              <p>其余药品购买需要分别成册，对于管理，需要对每种保存地点编号，比如，干燥箱A柜子a冰箱1这样编写，然后每种药品放好，记录电子版，记录量，位置，化学式，名称，保存方式，日期，价格，公司，购买人等(记得归类)。最好在最上面写清楚分类方法，电子版的好处是方便直接搜索所需，每个人如果添置药品或者用完可记得时时更新。</p>-->
+
+              <hr>
+              <p>设备状态：<span class="text-success">空闲</span></p>
+			  <p>耗材编号：5171001</p>
+              <p>所属：土木与测绘工程系</p>
+			  <p>数量：5</p>
+              <p>单位：块</p>
+			  <p>厂家：不限</p>
+			  <p>规格：240*115*90</p>
+			  <p>单价：15</p>
+			  <p>类型：易耗</p>
+              <div class="mt-4">
+                <div class="btn btn-primary btn-lg btn-flat" onclick="showWindow1()">
+                  <i class="fas fa-cart-plus fa-lg mr-2"></i>
+                  预约设备
+                </div>		
+                <div class="btn btn-default btn-lg btn-flat" onclick="showWindow2()">
+                  <i class="fas fa-heart fa-lg mr-2"></i>
+                  设备管理
+                </div>
+              </div>
+
+            
+            </div>
+          </div>
+
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <footer class="main-footer">
+    <div class="float-right d-none d-sm-block">
+      <b>Version</b> 3.1.0-rc
+    </div>
+    <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="../plugins/jquery/jquery.min.js" th:src="@{/plugins/jquery/jquery.min.js}"></script>
+<!-- Bootstrap 4 -->
+<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js" th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!-- AdminLTE App -->
+<script src="../dist/js/adminlte.min.js" th:src="@{/dist/js/adminlte.min.js}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../dist/js/demo.js" th:src="@{/dist/js/demo.js}"></script>
+
+<!--自定义js弹窗样式-->
+<script src="../myself/details.js" th:src="@{/myself/details.js}"></script>
+
+
+</body>
+</html>
