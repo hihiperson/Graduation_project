@@ -1,13 +1,12 @@
 package com.ppw.graduation.project.server.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ppw.graduation.project.model.entity.SysLog;
+
 import com.ppw.graduation.project.model.entity.User;
-import com.ppw.graduation.project.server.enums.Dynamic;
 import com.ppw.graduation.project.server.service.AccountService;
-import com.ppw.graduation.project.server.service.RabbitService;
+import com.ppw.graduation.project.server.service.CommonService;
 import com.ppw.graduation.project.server.utils.CheckMsgCode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +27,8 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/account")
 public class AccountController {
 
+    private static final Logger log = LoggerFactory.getLogger(AccountController.class) ;
+
     @Autowired
     private AccountService accountService;
 
@@ -35,13 +36,7 @@ public class AccountController {
     private CheckMsgCode checkMsgCode;
 
     @Autowired
-    private ObjectMapper objectMapper;
-
-    @Autowired
-    private RabbitService rabbitService;
-
-    SysLog sysLog = new SysLog();
-
+    private CommonService commonService;
 
     //注册账号界面
     @RequestMapping("/register")
@@ -52,33 +47,18 @@ public class AccountController {
         //return "register";
     }
 
-
-
     //注册按钮处理页
     @RequestMapping("/sub_register")
     public String sub_register( HttpServletRequest request, User user){
         //插入数据库
-        int res = accountService.insertSelective(user);
-        if (res>0) {
+        User res_user = accountService.insertSelective(user);
+        if (res_user.getUserId()>0) {
             //将用户信息存入session
             HttpSession session = request.getSession();
-            user.setUpwd("");
-            session.setAttribute("user", user);
-            try {
-                //TODO: 插入数据库日志
-                sysLog.setIp(Dynamic.ip);
-                sysLog.setTime(Dynamic.useTime);
-                sysLog.setUsername(user.getUname());
-                sysLog.setOperation("注册用户");
-                sysLog.setMethod("sub_register");
-                user.setUpwd("******");
-                sysLog.setParams(objectMapper.writeValueAsString(user));
-            } catch (JsonProcessingException e) {
-                sysLog.setMemo(e.getMessage());
-                e.printStackTrace();
-            }
-            rabbitService.mqSendLog(sysLog);
-
+            user.setUpwd("****");
+            session.setAttribute("user", res_user);
+            commonService.addLog(user.getUname(), "注册用户", "sub_register", res_user, "");
+            log.info("------------用户注册成功-------------");
             return "redirect:/index2/person_index";
         }else {
             return "redirect:/account/register";
@@ -135,22 +115,9 @@ public class AccountController {
             if(uname.equals(user.getUname()) && upwd.equals(user.getUpwd())){
                 //将用户信息存入session
                 HttpSession session = request.getSession();
-                user.setUpwd("");
+                user.setUpwd("****");
                 session.setAttribute("user", user);
-                try {
-                    //TODO: 插入数据库日志
-                    sysLog.setIp(Dynamic.ip);
-                    sysLog.setTime(Dynamic.useTime);
-                    sysLog.setUsername(user.getUname());
-                    sysLog.setOperation("登录");
-                    sysLog.setMethod("sub_login");
-                    user.setUpwd("******");
-                    sysLog.setParams(objectMapper.writeValueAsString(user));
-                } catch (JsonProcessingException e) {
-                    sysLog.setMemo(e.getMessage());
-                    e.printStackTrace();
-                }
-                rabbitService.mqSendLog(sysLog);
+                commonService.addLog(user.getUname(), "用户登录", "sub_login", user, "");
                 if ( user.getLevel()==4) {
                     return "redirect:/index2/person_index";
                 }else if (user.getLevel()==1 || user.getLevel()==2){

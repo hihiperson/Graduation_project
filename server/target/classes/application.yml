@@ -14,7 +14,7 @@ spring:
   #rabbitmq配置
   rabbitmq:
     virtual-host: /Graduation
-    host: 192.168.0.105
+    host: 192.168.0.101
     port: 5672
     username: admin
     password: admin
@@ -30,6 +30,14 @@ spring:
     port: 6379
     password:
 
+  #图片的其他配置
+  #单个文件最大尺寸
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      #一个请求的最大尺寸
+      max-request-size: 100MB
+
 #数据库配置
 datasource:
   url: jdbc:mysql://127.0.0.1:3306/graduation_project?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
@@ -40,6 +48,8 @@ datasource:
 file:
   #d:/temp/file/photo/
   filePhoto: classpath:/static/images/
+
+
 
 #mybatis
 mybatis:

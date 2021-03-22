@@ -42,7 +42,7 @@
       #{tel,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}, #{level,jdbcType=TINYINT}, 
       #{isActive,jdbcType=TINYINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.ppw.graduation.project.model.entity.User" >
+  <insert id="insertSelective" keyProperty="userId" useGeneratedKeys="true" parameterType="com.ppw.graduation.project.model.entity.User" >
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="userId != null" >

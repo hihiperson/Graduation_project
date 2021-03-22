@@ -361,7 +361,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./apply_all.html" class="nav-link">
+                <a href="./apply_all.html" th:href="@{/index2/AllCons}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>所有设备</p>
                 </a>
@@ -442,7 +442,7 @@
                      style="width: 50%; margin: 0 auto; display: none; position: absolute; top: 7%; left: 25%; z-index: 3; ">
 
 
-                  <form action="/laboratory/index/fileUpload" method="post" enctype="multipart/form-data">
+                  <form action="/laboratory/index2/fileUpload" method="post" enctype="multipart/form-data">
                     <label>上传头像</label>
                     <input type="file" name="file"/>
                     <input type="submit" value="上传"/>
@@ -460,15 +460,22 @@
 
                 <!--<p class="text-muted text-center">职工号：1234567898</p>-->
 
-                <ul class="list-group list-group-unbordered mb-3">
+                <ul class="list-group list-group-unbordered mb-3" th:if="${recodeUser!=null}">
+
                   <li class="list-group-item">
-                    <b>申请中</b> <a class="float-right">3</a>
+                    <b>申请中</b> <a class="float-right">[[${recodeUser.inProgress}]]</a>
                   </li>
                   <li class="list-group-item">
-                    <b>待归还</b> <a class="float-right">5</a>
+                    <b>已通过</b> <a class="float-right">[[${recodeUser.passed}]]</a>
                   </li>
                   <li class="list-group-item">
-                    <b>不良记录</b> <a class="float-right">13</a>
+                    <b>待归还</b> <a class="float-right">[[${recodeUser.notReturn}]]</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>未通过</b> <a class="float-right">[[${recodeUser.failed}]]</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>不良记录</b> <a class="float-right">[[${recodeUser.badRecords}]]</a>
                   </li>
                 </ul>
 
@@ -940,9 +947,9 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.1.0-rc
+      <b>Version</b> 1.1.0-Dev
     </div>
-    <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    <strong>PPW</strong> Graduation.
   </footer>
 
   <!-- /.control-sidebar -->

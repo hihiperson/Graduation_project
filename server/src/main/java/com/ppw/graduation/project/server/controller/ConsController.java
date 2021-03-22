@@ -19,23 +19,26 @@ import javax.servlet.http.HttpSession;
 //商品详情页controller
 
 @RestController
-@RequestMapping("device")
-public class DeviceController {
+@RequestMapping("cons")
+public class ConsController {
 
-    private static final Logger log  = LoggerFactory.getLogger(DeviceController.class);
+    private static final Logger log  = LoggerFactory.getLogger(ConsController.class);
 
     //TODO: 展示商品详情
     @RequestMapping("/detailByName")
     public ModelAndView detailByName(@RequestParam("name")String name, HttpServletRequest request){
         HttpSession session = request.getSession();
-        if (session.getAttribute("user")!=null){
-            System.out.println(session.getAttribute("user"));
-        }
-        if (name!=""||!name.equals("")||name!=null){
-            System.out.println("name========"+name);
-        }
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("details.html");
+        if (session.getAttribute("user")!=null){
+            if (name!=""||!name.equals("")||name!=null){
+                System.out.println("name========"+name);
+            }
+
+            modelAndView.setViewName("details.html");
+        }else{
+            modelAndView.setViewName("login");
+        }
+
         //查询所有耗材的选项
         return modelAndView;
     }

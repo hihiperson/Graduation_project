@@ -8,4 +8,6 @@ package com.ppw.graduation.project.server.enums;
 public class Constant {
 
     public static final String RedissonMsgCodeKey = "SpringBootRedisson:MsgCode";
+
+    public static final String SelectRecordUserKey = "Graduation:selectRecordUser:";
 }

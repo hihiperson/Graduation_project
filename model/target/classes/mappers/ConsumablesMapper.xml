@@ -11,14 +11,15 @@
     <result column="num" property="num" jdbcType="DECIMAL" />
     <result column="unit_price" property="unitPrice" jdbcType="DECIMAL" />
     <result column="total_price" property="totalPrice" jdbcType="DECIMAL" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
     <result column="remarks" property="remarks" jdbcType="VARCHAR" />
     <result column="is_active" property="isActive" jdbcType="TINYINT" />
     <result column="picture" property="picture" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    cid, department, name, unit, factory, specs, num, unit_price, total_price, remarks, 
-    is_active, picture, create_time
+    cid, department, name, unit, factory, specs, num, unit_price, total_price, type, 
+    remarks, is_active, picture, create_time
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -34,13 +35,13 @@
     insert into consumables (cid, department, name, 
       unit, factory, specs, 
       num, unit_price, total_price, 
-      remarks, is_active, picture, 
-      create_time)
+      type, remarks, is_active, 
+      picture, create_time)
     values (#{cid,jdbcType=INTEGER}, #{department,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{unit,jdbcType=VARCHAR}, #{factory,jdbcType=VARCHAR}, #{specs,jdbcType=VARCHAR}, 
       #{num,jdbcType=DECIMAL}, #{unitPrice,jdbcType=DECIMAL}, #{totalPrice,jdbcType=DECIMAL}, 
-      #{remarks,jdbcType=VARCHAR}, #{isActive,jdbcType=TINYINT}, #{picture,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP})
+      #{type,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, #{isActive,jdbcType=TINYINT}, 
+      #{picture,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.ppw.graduation.project.model.entity.Consumables" >
     insert into consumables
@@ -71,6 +72,9 @@
       </if>
       <if test="totalPrice != null" >
         total_price,
+      </if>
+      <if test="type != null" >
+        type,
       </if>
       <if test="remarks != null" >
         remarks,
@@ -113,6 +117,9 @@
       <if test="totalPrice != null" >
         #{totalPrice,jdbcType=DECIMAL},
       </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
       <if test="remarks != null" >
         #{remarks,jdbcType=VARCHAR},
       </if>
@@ -154,6 +161,9 @@
       <if test="totalPrice != null" >
         total_price = #{totalPrice,jdbcType=DECIMAL},
       </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
       <if test="remarks != null" >
         remarks = #{remarks,jdbcType=VARCHAR},
       </if>
@@ -179,6 +189,7 @@
       num = #{num,jdbcType=DECIMAL},
       unit_price = #{unitPrice,jdbcType=DECIMAL},
       total_price = #{totalPrice,jdbcType=DECIMAL},
+      type = #{type,jdbcType=VARCHAR},
       remarks = #{remarks,jdbcType=VARCHAR},
       is_active = #{isActive,jdbcType=TINYINT},
       picture = #{picture,jdbcType=VARCHAR},

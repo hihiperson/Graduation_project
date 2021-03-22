@@ -1,8 +1,11 @@
 package com.ppw.graduation.project.server.controller;
 
+import com.ppw.graduation.project.model.entity.RecodeUser;
+import com.ppw.graduation.project.model.entity.ShowConsumables;
 import com.ppw.graduation.project.model.entity.User;
 import com.ppw.graduation.project.model.mapper.UserMapper;
 import com.ppw.graduation.project.server.service.FileService;
+import com.ppw.graduation.project.server.service.Index2Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +14,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * @version 1.0
@@ -23,7 +29,7 @@ import javax.servlet.http.HttpSession;
  */
 
 //TODO: 普通用户主页
-@Controller
+@RestController
 @RequestMapping("index2")
 public class Index2Controller {
 
@@ -37,17 +43,29 @@ public class Index2Controller {
     private UserMapper userMapper;
 
     @Autowired
+    private Index2Service index2Service;
+
+    @Autowired
     private FileService fileService;
 
     @RequestMapping("person_index")
-    public String person_index(HttpServletRequest request){
+    public ModelAndView person_index(HttpServletRequest request){
         HttpSession session = request.getSession();
+        ModelAndView modelAndView = new ModelAndView();
         //如果已登录，进入index
         if (session.getAttribute("user")!=null){
             User user = (User) session.getAttribute("user");
-            if (user.getLevel()==1 || user.getLevel()==4)  return "person_index";
+            if (user.getLevel()==4 || user.getLevel()==1){
+                //TODO: 查缓存数据……缓存没有就查数据库……
+                RecodeUser recodeUser = index2Service.selectUserRecord(user.getUserId());
+                modelAndView.setViewName("person_index");
+                modelAndView.addObject("recodeUser", recodeUser);
+            }
+        }else {
+            modelAndView.setViewName("redirect:/account/login");
         }
-        return "redirect:/account/login";
+
+        return modelAndView;
 
     }
 
@@ -63,10 +81,23 @@ public class Index2Controller {
             if (res > 0){
                 user.setPicture(picture);
                 session.setAttribute("user", user);
-                return "redirect:/index/person_index";
+                return "redirect:/index2/person_index";
             }
         }
         return "error";
+    }
+
+    //TODO：显示所有商品
+    @RequestMapping("AllCons")
+    public ModelAndView AllCons(){
+        ModelAndView modelAndView = new ModelAndView();
+        List<ShowConsumables> list = index2Service.selectShowConsumablesList();
+        for (ShowConsumables s:list) {
+            System.out.println(s.toString());
+            System.out.println(s.getUserDTOList().toString());
+        }
+        modelAndView.setViewName("person_index");
+        return modelAndView;
     }
 
 }

@@ -20,7 +20,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @MapperScan(basePackages = "com.ppw.graduation.project.model.mapper")
 @EnableAsync
 @EnableScheduling
-
 //为了提升性能，继承SpringBoot的初始化组件
 public class MainApplication extends SpringBootServletInitializer {
     @Override
