@@ -1,8 +1,11 @@
 package com.ppw.graduation.project.model.mapper;
 
 
+import com.ppw.graduation.project.model.dto.UserRecordDTO;
 import com.ppw.graduation.project.model.entity.User;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer userId);
@@ -26,4 +29,7 @@ public interface UserMapper {
     int updateByTelSelective(User record);
 
     int updatePicture(@Param("picture") String picture, @Param("userId")Integer userId);
+
+    //TODO: 查询已通过的申请信息
+    List<UserRecordDTO> selectPassedList();
 }

@@ -14,7 +14,7 @@ spring:
   #rabbitmq配置
   rabbitmq:
     virtual-host: /Graduation
-    host: 192.168.0.101
+    host: 192.168.253.129
     port: 5672
     username: admin
     password: admin
@@ -37,6 +37,14 @@ spring:
       max-file-size: 10MB
       #一个请求的最大尺寸
       max-request-size: 100MB
+
+  #设置json日期序列化显示格式
+  mvc:
+    format:
+      date-time: yyyy-MM-dd HH:mm:ss
+  jackson:
+    date-format: yyyy--MM--dd
+    time-zone: GMT+8
 
 #数据库配置
 datasource:

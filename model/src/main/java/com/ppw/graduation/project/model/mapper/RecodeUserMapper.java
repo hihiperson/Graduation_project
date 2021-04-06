@@ -1,6 +1,7 @@
 package com.ppw.graduation.project.model.mapper;
 
 import com.ppw.graduation.project.model.entity.RecodeUser;
+import org.apache.ibatis.annotations.Param;
 
 public interface RecodeUserMapper {
     int deleteByPrimaryKey(Integer rid);
@@ -18,4 +19,6 @@ public interface RecodeUserMapper {
     RecodeUser selectByUserId(Integer uid);
 
     int insertByUserId(int userId);
+
+    void updateNoReturnByUserID(@Param("userId") int userId);
 }

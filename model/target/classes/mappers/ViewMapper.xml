@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ppw.graduation.project.model.mapper.ViewMapper">
+
+    <resultMap id="ShowConsMap" type="com.ppw.graduation.project.model.entity.ShowConsumables" >
+        <id column="cid" property="cid" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="department" property="department" jdbcType="VARCHAR" />
+        <result column="lend" property="lend" jdbcType="DECIMAL" />
+        <result column="starting_num" property="starting_num" jdbcType="DECIMAL" />
+        <result column="num" property="num" jdbcType="DECIMAL" />
+        <result column="frequency" property="frequency" jdbcType="INTEGER" />
+        <result column="is_active" property="isActive" jdbcType="TINYINT" />
+        <!--组装当前类别的子类别-->
+        <collection property="userDTOList" ofType="com.ppw.graduation.project.model.dto.UserDTO">
+            <result column="user_id" property="userId" jdbcType="INTEGER"/>
+            <result column="uname" property="uname" jdbcType="VARCHAR" />
+            <result column="picture" property="picture" jdbcType="VARCHAR" />
+        </collection>
+    </resultMap>
+    <select id="selectShowConsumablesList" resultMap="ShowConsMap">
+        select cid,
+            name,
+          department,
+          lend,
+          starting_num,
+            num,
+          user_id,
+            uname,
+            picture,
+            frequency,
+            keyword,
+            is_active
+        FROM
+          show_consumables
+        WHERE is_active=1 ORDER BY
+          cid;
+    </select>
+
+    <resultMap id="showUserRecordMap" type="com.ppw.graduation.project.model.dto.UserRecordDTO">
+        <id column="aid" property="aid" jdbcType="INTEGER" />
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="cid" property="cid" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="unit" property="unit" jdbcType="VARCHAR" />
+        <result column="apply_num" property="applyNum" jdbcType="DECIMAL" />
+        <result column="apply_time" property="applyTime" jdbcType="TIMESTAMP" />
+        <result column="apply_day" property="applyDay" jdbcType="INTEGER" />
+        <result column="apply_reson" property="applyReson" jdbcType="VARCHAR" />
+        <result column="approval_person1" property="approvalPerson1" jdbcType="INTEGER" />
+        <result column="approval_person2" property="approvalPerson2" jdbcType="INTEGER" />
+        <result column="apply_state_id" property="applyStateId" jdbcType="TINYINT" />
+        <result column="memo" property="memo" jdbcType="VARCHAR" />
+    </resultMap>
+    <select id="selectUserRecordList" resultMap="showUserRecordMap">
+       select
+            aid,
+            user_id,
+            cid,
+            name,
+            unit,
+            apply_num,
+            apply_time,
+            apply_day,
+            apply_reson,
+            approval_person1,
+            approval_person2,
+            memo
+        FROM
+            show_user_record
+        WHERE
+            user_id = #{userId,jdbcType=INTEGER}
+            and apply_state_id = #{applyStateId,jdbcType=TINYINT}
+    </select>
+    <select id="selectUserInProByXBList" resultMap="showUserRecordMap">
+       select
+            aid,
+            user_id,
+            cid,
+            name,
+            unit,
+            apply_num,
+            apply_time,
+            apply_day,
+            apply_reson,
+            approval_person1,
+            approval_person2,
+            memo
+        FROM
+            show_user_record
+        WHERE
+            user_id = #{userId,jdbcType=INTEGER}
+            and apply_state_id = 5;
+    </select>
+    <select id="selectUserInProByJWList" resultMap="showUserRecordMap">
+       select
+            aid,
+            user_id,
+            cid,
+            name,
+            unit,
+            apply_num,
+            apply_time,
+            apply_day,
+            apply_reson,
+            approval_person1,
+            approval_person2,
+            memo
+        FROM
+            show_user_record
+        WHERE
+            user_id = #{userId,jdbcType=INTEGER}
+            and apply_state_id = 6;
+    </select>
+
+    <select id="selectUserRecordByAid" resultMap="showUserRecordMap">
+       select
+            aid,
+            user_id,
+            cid,
+            name,
+            unit,
+            apply_num,
+            apply_time,
+            apply_day,
+            apply_reson,
+            approval_person1,
+            approval_person2,
+            memo
+        FROM
+            show_user_record
+        WHERE
+            aid = #{aid}
+    </select>
+</mapper>

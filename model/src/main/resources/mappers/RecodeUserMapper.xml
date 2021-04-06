@@ -126,4 +126,12 @@
       bad_records = #{badRecords,jdbcType=INTEGER}
     where rid = #{rid,jdbcType=INTEGER}
   </update>
+
+  <!--设备无法归还-->
+  <update id="updateNoReturnByUserID">
+    update recode_user
+    set not_return = not_return-1,
+    bad_records = bad_records+1
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
 </mapper>

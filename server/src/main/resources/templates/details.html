@@ -259,13 +259,7 @@
           <div class="row">
             <div class="col-10 col-sm-4">
               <div class="col-10">
-                <img src="../images/consumables/photo1.png" class="product-image" alt="Product Image">
-              </div>
-			  <div class="col-12 product-image-thumbs">
-                <div class="product-image-thumb active"><img src="../images/consumables/photo1.png" alt="Product Image"></div>
-                <div class="product-image-thumb" ><img src="../images/consumables/photo2.png" alt="Product Image"></div>
-                <div class="product-image-thumb" ><img src="../images/consumables/photo3.jpg" alt="Product Image"></div>
-               
+                <img src="../images/consumables/photo1.png" th:src="@{${consumables.picture}}" class="product-image" alt="Product Image">
               </div>
             </div>
 			
@@ -280,52 +274,55 @@
 				<!-- 内容 -->
 
 				<div class = "basic-grey ">
-					<form action="" method="post" class="STYLE-NAME">
+					<form action="" th:action="@{/cons/sub_cons}" onsubmit="return check_submit();" method="post" class="STYLE-NAME">
 					<h1><strong>耗材预约</strong>
 					<span>请填写申请表</span>
 					</h1>
                         <label>
                         <span><b>用户:</b></span>
-                        <input disabled="disabled" id="te_name" type="text" name="te_name" placeholder="哈哈哈" />
+                        <input disabled="disabled" type="text" th:value="${session.user.uname}" placeholder="哈哈哈" />
+                        <input type="hidden" id="userId" name="userId" th:value="${session.user.userId}">
                         </label>
 					<label>
 					<span><b>耗材名称:</b></span>
-					<input id="01" disabled="disabled"  type="text" name="name" placeholder="水泥砖" />
+                    <input type="hidden" id="cid" name="cid" th:value="${consumables.cid}">
+					<input disabled="disabled"  type="text" th:value="${consumables.name}" placeholder="水泥砖" />
 					</label>
 					<label>
 					<span><b>耗材单位:</b></span>
-					<input id="02" disabled="disabled"  type="text" name="name" placeholder="块" />
+					<input  disabled="disabled"  type="text" th:value="${consumables.specs+consumables.unit}" placeholder="块" />
 					</label>
                         <label>
                             <span><b>库存:</b></span>
-                            <input id="05" disabled="disabled"  type="text" name="name" placeholder="100" />
+                            <input disabled="disabled" id="num"  type="text" th:value="${consumables.num}" placeholder="100" />
                         </label>
                         <label>
 					<span><b>借用数量:</b></span>
-					<input id="3" type="text" name="name" placeholder="20" />
+					<input  type="text" id="applyNum" name="applyNum" value="1" />
+
+                            <p class="text-danger" id="hint_num"></p>
 					</label>
 					<label>
 					<span><b>预约时间:</b></span>
-					<input type="Date" name="rq">
+					<input type="Date" id="applyTime" name="applyTime">
+                        <p class="text-danger" id="hint_applyTime"></p>
 					</label>
 					<label>
 					<span><b>申请天数:</b></span>
-					<input type="text" name="rq" placeholder="无需归还填写：0">
+					<input type="text" id="applyDay" name="applyDay" placeholder="无需归还填写：0">
+                        <p class="text-danger" id="hint_day"></p>
 					</label>
 					<label>
 					<span><b>申请理由:</b></span>
-					<textarea id="message" name="message" placeholder="实训使用"></textarea>
+					<textarea id="applyReson" th:id="applyReson" name="applyReson" value="实训使用"></textarea>
+                        <p class="text-danger" id="hint_message"></p>
 					</label>
-					<!-- <label> -->
-					<!-- <span>Subject :</span><select name="selection"> -->
-					<!-- <option value="Job Inquiry">Job Inquiry</option> -->
-					<!-- <option value="General Question">General Question</option> -->
-					<!-- </select> -->
-					<!-- </label> -->
 					<label>
 					<span>&nbsp;</span>
-					<input type="button" class="button" value="提交" onclick="closeWindow()"/>
+					<input type="submit" class="button" value="提交"/>
+                        <input type="button" class="button" value="关闭" onclick="closeWindow()"/>
 					</label>
+
 					</form>
 				 </div>
 			</div>	
@@ -342,12 +339,13 @@
 					</h1>
 					<label>
 					<span><b>耗材名称:</b></span>
-					<input id="11" type="text" name="name" placeholder="干燥箱A柜子" />
+					<input id="11" type="text" name="name" th:value="${consumables.name}" placeholder="干燥箱A柜子" />
 					</label>
-					<label>
-					<span><b>耗材介绍:</b></span>
-					<textarea id="22" name="message" placeholder="其余药品购买需要分别成册，对于管理，需要对每种保存地点编号，比如，干燥箱A柜子a冰箱1这样编写，然后每种药品放好，记录电子版，记录量，位置，化学式，名称，保存方式，日期，价格，公司，购买人等(记得归类)。最好在最上面写清楚分类方法，电子版的好处是方便直接搜索所需，每个人如果添置药品或者用完可记得时时更新。"></textarea>
-					</label>
+<!--					<label>-->
+<!--					<span><b>耗材介绍:</b></span>-->
+
+<!--					<textarea id="22" name="message" placeholder="其余药品购买需要分别成册，对于管理，需要对每种保存地点编号，比如，干燥箱A柜子a冰箱1这样编写，然后每种药品放好，记录电子版，记录量，位置，化学式，名称，保存方式，日期，价格，公司，购买人等(记得归类)。最好在最上面写清楚分类方法，电子版的好处是方便直接搜索所需，每个人如果添置药品或者用完可记得时时更新。"></textarea>-->
+<!--					</label>-->
 					<label>
 					<span>耗材状态 :</span><select name="selection">
 					<option value="zaixian">在线</option>
@@ -366,28 +364,21 @@
 					
 					<label>
 					<span><b>耗材编号:</b></span>
-					<input id="shebei_num" type="text" name="shebei_num" placeholder="51000" />
+					<input id="shebei_num" type="text" name="shebei_num" th:value="${consumables.cid}" placeholder="51000" />
 					</label>
 					<label>
 					<span><b>数量:</b></span>
-					<input id="1" type="text" name="shebei_name" placeholder="5" />
+					<input id="1" type="text" name="shebei_name" th:value="${consumables.num}" placeholder="5" />
 					</label>
 					<label>
 					<span><b>耗材规格:</b></span>
-					<input id="2" type="text" name="shebei_name" placeholder="大" />
+					<input id="2" type="text" name="shebei_name" th:value="${consumables.specs}" placeholder="大" />
 					</label>
 					<label>
 					<span><b>耗材价值:</b></span>
-					<input id="ssv3-location-url4" type="text" name="shebei_name" placeholder="1000yuan" />
+					<input id="ssv3-location-url4" type="text" name="shebei_name" th:value="${consumables.unitPrice}" placeholder="1000yuan" />
 					</label>
-					<label>
-					<span><b>放置地点:</b></span>
-					<input id="5" type="text" name="shebei_name" placeholder="实训楼A400" />
-					</label>
-					<label>
-					<span><b>联系人:</b></span>
-					<input id="6" type="text" name="shebei_name" placeholder="保安队长&nbsp;&nbsp;12345678910" />
-					</label>
+
 					<label>
 					<span>&nbsp;</span>
 					<input type="button" class="button" value="提交" onclick="closeWindow()"/>
@@ -398,25 +389,26 @@
 			<!--这里是隐藏信息_结束-->			
 			
             <div class="col-10 col-sm-8">
-              <h3 class="my-3">水泥砖（name）</h3>
+              <h3 class="my-3" th:text="${consumables.name}">水泥砖</h3>
 <!--              <p>其余药品购买需要分别成册，对于管理，需要对每种保存地点编号，比如，干燥箱A柜子a冰箱1这样编写，然后每种药品放好，记录电子版，记录量，位置，化学式，名称，保存方式，日期，价格，公司，购买人等(记得归类)。最好在最上面写清楚分类方法，电子版的好处是方便直接搜索所需，每个人如果添置药品或者用完可记得时时更新。</p>-->
 
               <hr>
-              <p>设备状态：<span class="text-success">空闲</span></p>
-			  <p>耗材编号：5171001</p>
-              <p>所属：土木与测绘工程系</p>
-			  <p>数量：5</p>
-              <p>单位：块</p>
-			  <p>厂家：不限</p>
-			  <p>规格：240*115*90</p>
-			  <p>单价：15</p>
-			  <p>类型：易耗</p>
+              <p>设备状态：<span class="text-success" th:text="${consumables.isActive==1?'空闲':'暂时下架'}">空闲</span></p>
+			  <p>耗材编号：<span th:text="${consumables.cid}">5171001</span></p>
+              <p>所属：<span th:text="${consumables.department}">土木与测绘工程系</span></p>
+			  <p>数量：<span th:text="${consumables.num}">5</span></p>
+              <p>单位：<span th:text="${consumables.unit}">块</span></p>
+			  <p>厂家：<span th:text="${consumables.factory}">不限</span></p>
+			  <p>规格：<span th:text="${consumables.specs}">240*115*90</span></p>
+			  <p>单价：<span th:text="${consumables.unitPrice}">15</span></p>
+			  <p>类型：<span th:text="${consumables.type}">易耗</span></p>
+              <p>备注：<span th:text="${consumables.remarks}">无</span></p>
               <div class="mt-4">
                 <div class="btn btn-primary btn-lg btn-flat" onclick="showWindow1()">
                   <i class="fas fa-cart-plus fa-lg mr-2"></i>
                   预约设备
                 </div>		
-                <div class="btn btn-default btn-lg btn-flat" onclick="showWindow2()">
+                <div class="btn btn-default btn-lg btn-flat" th:onclick="${session.user.level<4}?'showWindow2()':''">
                   <i class="fas fa-heart fa-lg mr-2"></i>
                   设备管理
                 </div>
@@ -436,12 +428,7 @@
   </div>
   <!-- /.content-wrapper -->
 
-  <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.1.0-rc
-    </div>
-    <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-  </footer>
+  <div th:replace="person_index::footer"></div>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

@@ -3,9 +3,14 @@ package com.ppw.graduation.project.server.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ppw.graduation.project.model.entity.SysLog;
+import com.ppw.graduation.project.model.entity.User;
 import com.ppw.graduation.project.server.enums.Dynamic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.jws.WebParam;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * @version 1.0
@@ -45,5 +50,6 @@ public class CommonService {
         }
         rabbitService.mqSendLog(sysLog);
     }
+
 
 }

@@ -503,82 +503,51 @@
 		
                 <div class="tab-content">
 				
-				
-                  <div class="active tab-pane" id="activity">
+                  <div class="active tab-pane" id="activity" >
 				  <!-- The timeline -->
                     <div class="timeline timeline-inverse">
                       <!-- timeline time label -->
                       <div class="time-label">
                         <span class="bg-danger">
-                          2021.02.02
+                          最近消息
                         </span>
                       </div>
 
-                      <div>
+                      <div th:each="passed, index:${passedList}" th:if="${index.count} lt 3">
                         <i class="fas fa-user bg-info"></i>
 
                         <div class="timeline-item">
-                          <span class="time"><i class="far fa-clock"></i> 5 day ago</span>
+                          <span class="time">申请：[[${passed.applyDay}]]天</span>
 
-                          <h3 class="timeline-header border-0"><a href="#">2021.01.28：</a> 一次性手套申请
+                          <h3 class="timeline-header border-0"><a href="#" th:text="${#dates.format(passed.applyTime, 'yyyy-MM-dd')}">2021.01.28：</a> [[${passed.name+'('+#numbers.formatInteger(passed.applyNum, 0)+passed.unit}]])
                           </h3>
                         </div>
                       </div>
-                      <!-- END timeline item -->
-                      <!-- timeline item -->
-                      <div>
-                        <i class="fas fa-user bg-info"></i>
 
-                        <div class="timeline-item">
-                          <span class="time"><i class="far fa-clock"></i> 5 day ago</span>
-
-                          <h3 class="timeline-header border-0"><a href="#">2021.01.28：</a>软管申请
-                          </h3>
-                        </div>
-                      </div>
-                      <!-- END timeline item -->
-                      <!-- timeline time label -->
                       <div class="time-label">
                         <span class="bg-success">
-                          2021.01.30
+                          历史消息
                         </span>
                       </div>
-                      <!-- /.timeline-label -->
-					  <div>
+                      <div th:each="passed, index:${passedList}" th:if="${index.count} gt 2">
                         <i class="fas fa-user bg-info"></i>
 
                         <div class="timeline-item">
-                          <span class="time"><i class="far fa-clock"></i> 1 day ago</span>
+                          <span class="time">申请：[[${passed.applyDay}]]天</span>
 
-                          <h3 class="timeline-header border-0"><a href="#">2021.01.29：</a> 阿米洛键盘申请
-                          </h3>
-                        </div>
-                      </div>
-					  <div>
-                        <i class="fas fa-user bg-info"></i>
-
-                        <div class="timeline-item">
-                          <span class="time"><i class="far fa-clock"></i> 1 day ago</span>
-
-                          <h3 class="timeline-header border-0"><a href="#">2021.01.29：</a> ipad11申请
-                          </h3>
-                        </div>
-                      </div>
-					  <div>
-                        <i class="fas fa-user bg-info"></i>
-
-                        <div class="timeline-item">
-                          <span class="time"><i class="far fa-clock"></i> 1 day ago</span>
-
-                          <h3 class="timeline-header border-0"><a href="#">2021.01.29：</a> ROG全家桶申请
+                          <h3 class="timeline-header border-0"><a href="#" th:text="${#dates.format(passed.applyTime, 'yyyy-MM-dd')}">2021.01.28：</a> [[${passed.name+'('+#numbers.formatInteger(passed.applyNum, 0)+passed.unit}]])
                           </h3>
                         </div>
                       </div>
                       <!-- END timeline item -->
                       <!-- timeline item -->
-					  <!-- END timeline item -->
                       <div>
                         <i class="far fa-clock bg-gray"></i>
+                      </div>
+                      <div>
+                        <div class="timeline-item">
+                          <span class="time"><a href="#"> 《了解全部</a></span>
+                        </div>
                       </div>
                   </div>
 				  </div>
@@ -591,39 +560,23 @@
                       <!-- timeline time label -->
                       <div class="time-label">
                         <span class="bg-danger">
-                          2021.01.29
+                          最新消息
                         </span>
                       </div>
                       <!-- /.timeline-label -->
 
 					  <!-- timeline item -->
-                      <div>
+                      <div th:each="noPassed, index:${noPassedList}" th:if="${index.count} lt 3">
                         <i class="fas fa-comments bg-warning"></i>
 
                         <div class="timeline-item">
-                          <span class="time"><i class="far fa-clock"></i> 3 day ago</span>
+                          <span class="time"><i class="far fa-clock"></i>申请：[[${noPassed.applyDay}]]天</span>
 
-                          <h3 class="timeline-header"><a href="#">2021.01.26：</a> 化学气体申请</h3>
+                          <h3 class="timeline-header border-0"><a href="#" th:text="${#dates.format(noPassed.applyTime, 'yyyy-MM-dd')}">2021.01.28：</a> [[${noPassed.name+'('+#numbers.formatInteger(noPassed.applyNum, 0)+noPassed.unit}]])
+                          </h3>
 
-                          <div class="timeline-body">
+                            <div class="timeline-body" th:text="${'失败原因：'+noPassed.memo}">
                             失败原因：有毒气体，需要领导纸质文件~
-                          </div>
-                        </div>
-                      </div>
-                      <!-- END timeline item -->
-                      <!-- timeline time label -->
-                      <!-- END timeline item -->
-                      <!-- timeline item -->
-                      <div>
-                        <i class="fas fa-comments bg-warning"></i>
-
-                        <div class="timeline-item">
-                          <span class="time"><i class="far fa-clock"></i> 3 day ago</span>
-
-                          <h3 class="timeline-header"><a href="#">2021.01.26：</a> 300张桌子申请</h3>
-
-                          <div class="timeline-body">
-                            失败原因：器材损坏，仅剩100张库存~
                           </div>
                         </div>
                       </div>
@@ -631,23 +584,23 @@
                       <!-- timeline time label -->
                       <div class="time-label">
                         <span class="bg-success">
-                          2021.01.10
+                          历史消息
                         </span>
                       </div>
                       <!-- /.timeline-label -->
                       <!-- timeline item -->
 					    <!-- timeline item -->
-                      <div>
+                      <div th:each="noPassed, index:${noPassedList}" th:if="${index.count} gt 2">
                         <i class="fas fa-comments bg-warning"></i>
 
                         <div class="timeline-item">
-                          <span class="time"><i class="far fa-clock"></i> 1 day ago</span>
-                          
+                          <span class="time"><i class="far fa-clock"></i>申请：[[${noPassed.applyDay}]]天</span>
 
-                          <h3 class="timeline-header"><a href="#">2021.01.09：</a> 系部盖章申请</h3>
+                          <h3 class="timeline-header border-0"><a href="#" th:text="${#dates.format(noPassed.applyTime, 'yyyy-MM-dd')}">2021.01.28：</a> [[${noPassed.name+'('+#numbers.formatInteger(noPassed.applyNum, 0)+noPassed.unit}]])
+                          </h3>
 
-                          <div class="timeline-body">
-                            失败原因：你要先意思意思~
+                          <div class="timeline-body" th:text="${'失败原因：'+noPassed.memo}">
+                            失败原因：有毒气体，需要领导纸质文件~
                           </div>
                         </div>
                       </div>
@@ -656,6 +609,11 @@
                       <!-- END timeline item -->
                       <div>
                         <i class="far fa-clock bg-gray"></i>
+                      </div>
+                      <div>
+                        <div class="timeline-item">
+                          <span class="time"><a href="#"> 《了解全部</a></span>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -672,22 +630,24 @@
 				<!-- 内容 -->
 
 				<div class = "basic-grey ">
-					<form action="" method="post" class="STYLE-NAME">
+					<form action="" th:action="@{/index2/cannotReturn}" method="post" class="STYLE-NAME">
 					<h1><strong>原因：</strong>
 					</h1>
 					<label>
 					<span><b>耗材名称:</b></span>
-					<input id="name" type="text" name="name" placeholder="键盘100套" />
+					<input id="cname" type="text"  name="cname" placeholder="键盘100套" disabled />
 					</label>
-
 					<label>
 					<span><b>时间:</b></span>
-					<input type="Date" name="rq">
+					<input id="createTime" name="createTime" type="Date">
 					</label>
 					<label>
 					<span><b>理由:</b></span>
-					<textarea id="message" name="message" placeholder="不小心弄丢了"></textarea>
+					<textarea id="memo" name="memo">弄丢了~</textarea>
 					</label>
+                      <input type="hidden" id="cid" name="cid"/>
+                      <input type="hidden" id="userId" name="userId"/>
+                      <input type="hidden" id="aid" name="aid"/>
 					<!-- <label> -->
 					<!-- <span>Subject :</span><select name="selection"> -->
 					<!-- <option value="Job Inquiry">Job Inquiry</option> -->
@@ -696,7 +656,8 @@
 					<!-- </label> -->
 					<label>
 					<span>&nbsp;</span>
-					<input type="button" class="button" value="提交" onclick="closeWindow()"/>
+                      <input type="submit" class="button" value="提交"/>
+                      <input type="button" class="button" value="关闭" onclick="closeWindow()"/>
 					</label>
 					</form>
 				 </div>
@@ -709,60 +670,45 @@
                       <!-- timeline time label -->
                       <div class="time-label">
                         <span class="bg-danger">
-                          明天到期
+                          即将到期
                         </span>
                       </div>
 
-                      <div>
-                        <i class="fas fa-user bg-info"></i>
+                      <div th:each="noReturn, index:${noReturnList}" th:if="${index.count} lt 3">
+                      <i class="fas fa-user bg-info"></i>
 
                         <div class="timeline-item">
-						<small class="float-right" onclick="showWindow()">无法归还？</small>
-                          <h3 class="timeline-header border-0"><a href="#">2021.01.28：</a> 阿米洛键盘申请
+                          <!--text-info-->
+						<small class="float-right text-info" style="cursor:pointer;" th:onclick="showWindow([[${noReturn.cid}]],[[${noReturn.name}]],[[${noReturn.userId}]])">无法归还？</small>
+                          <h3 class="timeline-header border-0"><a href="#" th:text="${#dates.format(noReturn.applyTime, 'yyyy-MM-dd')}">2021.01.28：</a> [[${noReturn.name+'('+#numbers.formatInteger(noReturn.applyNum, 0)+noReturn.unit}]])
                           </h3>
                         </div>
                       </div>
                       <!-- END timeline item -->
                       <!-- timeline item -->
-                      <div>
-                        <i class="fas fa-user bg-info"></i>
-
-                        <div class="timeline-item">
-						<span class="time" onclick="showWindow()">无法归还？</span>
-                          <h3 class="timeline-header border-0"><a href="#">2021.01.28：</a> ROG申请
-                          </h3>
-                        </div>
-                      </div>
-                      <!-- END timeline item -->
-                      <!-- timeline time label -->
                       <div class="time-label">
                         <span class="bg-success">
-                          三天内到期
+                          温馨提醒
                         </span>
                       </div>
                       <!-- /.timeline-label -->
-					                        <div>
+                      <div th:each="noReturn, index:${noReturnList}" th:if="${index.count} gt 2">
                         <i class="fas fa-user bg-info"></i>
 
                         <div class="timeline-item">
-						<span class="time" onclick="showWindow()">无法归还？</span>
-						<h3 class="timeline-header border-0"><a href="#">2021.01.26：</a> ipad11申请</h3>
-						
-                        </div>
-                      </div>
-                      <!-- END timeline item -->
-                      <!-- timeline item -->
-                      <div>
-                        <i class="fas fa-user bg-info"></i>
-
-                        <div class="timeline-item">
-						<span class="time" onclick="showWindow()">无法归还？</span>
-                          <h3 class="timeline-header border-0"><a href="#">2021.01.26：</a> 奖学金申请</h3>
+                          <small class="float-right text-info" onclick="showWindow()" style="cursor:pointer;" th:onclick="showWindow([[${noReturn.cid}]],[[${noReturn.name}]],[[${noReturn.userId}]],[[${noReturn.aid}]])">无法归还？</small>
+                          <h3 class="timeline-header border-0"><a href="#" th:text="${#dates.format(noReturn.applyTime, 'yyyy-MM-dd')}">2021.01.28：</a> [[${noReturn.name+'('+#numbers.formatInteger(noReturn.applyNum, 0)+noReturn.unit}]])
+                          </h3>
                         </div>
                       </div>
 					  <!-- END timeline item -->
                       <div>
                         <i class="far fa-clock bg-gray"></i>
+                      </div>
+                      <div>
+                        <div class="timeline-item">
+                          <span class="time"><a href="#"> 《了解全部</a></span>
+                        </div>
                       </div>
                   </div>
                   </div>
@@ -777,14 +723,13 @@
                           教务审批
                         </span>
                       </div>
-
                       <div>
                         <i class="fas fa-user bg-info"></i>
 
                         <div class="timeline-item">
-                          <span class="time"><i class="far fa-clock"></i> 5 day ago</span>
+                          <span class="time"><i class="far fa-clock"></i>审批人员编号：[[${inProByJWList.get(0).approvalPerson2}]]</span>
 
-                          <h3 class="timeline-header border-0"><a href="#">待审批</a> 
+                          <h3 class="timeline-header border-0"><a href="#">审批中&nbsp;&nbsp;</a> [[${inProByJWList.get(0).name+'('+#numbers.formatInteger(inProByJWList.get(0).applyNum, 0)+inProByJWList.get(0).unit}]])
                           </h3>
                         </div>
                       </div>
@@ -794,10 +739,15 @@
                         <i class="fas fa-user bg-info"></i>
 
                         <div class="timeline-item">
-                          <span class="time"><i class="far fa-clock"></i> 5 day ago</span>
+                          <span class="time"><i class="far fa-clock"></i>审批人员编号：[[${inProByJWList.get(1).approvalPerson2}]]</span>
 
-                          <h3 class="timeline-header border-0"><a href="#">审批中</a> 
+                          <h3 class="timeline-header border-0"><a href="#">待审批&nbsp;&nbsp;</a> [[${inProByJWList.get(1).name+'('+#numbers.formatInteger(inProByJWList.get(1).applyNum, 0)+inProByJWList.get(1).unit}]])
                           </h3>
+                        </div>
+                      </div>
+                      <div>
+                        <div class="timeline-item">
+                          <span class="time"><a href="#"> 《了解全部</a></span>
                         </div>
                       </div>
                       <!-- END timeline item -->
@@ -807,49 +757,26 @@
                           系部审批
                         </span>
                       </div>
-                      <!-- /.timeline-label -->
-					                        <div>
-                        <i class="fas fa-user bg-info"></i>
 
-                        <div class="timeline-item">
-                          <span class="time"><i class="far fa-clock"></i> 5 day ago</span>
-
-                          <h3 class="timeline-header border-0"><a href="#">审批通过</a> accepted your friend request
-                          </h3>
-                        </div>
-                      </div>
-                      <!-- END timeline item -->
                       <!-- timeline item -->
-                      <div>
+                      <div th:each="inProByXB:${inProByXBList}">
                         <i class="fas fa-user bg-info"></i>
 
                         <div class="timeline-item">
-                          <span class="time"><i class="far fa-clock"></i> 5 day ago</span>
+                          <span class="time"><i class="far fa-clock"></i> 审批人员编号：[[${inProByXB.approvalPerson2}]]</span>
 
-                          <h3 class="timeline-header border-0"><a href="#">待审批</a> 败家之眼键盘申请
-                          </h3>
-                        </div>
-                      </div>
-					  <!-- END timeline item -->
-					  <div class="time-label">
-                        <span class="bg-success">
-                          正在发起
-                        </span>
-                      </div>
-                      <!-- /.timeline-label -->
-					                        <div>
-                        <i class="fas fa-user bg-info"></i>
-
-                        <div class="timeline-item">
-                          <span class="time"><i class="far fa-clock"></i> 5 day ago</span>
-
-                          <h3 class="timeline-header border-0"><a href="#">2021.1.28</a> 败家之眼申请使用
+                          <h3 class="timeline-header border-0"><a href="#">待审批&nbsp;&nbsp;</a>[[${inProByXB.name+'('+#numbers.formatInteger(inProByXB.applyNum, 0)+inProByXB.unit}]])
                           </h3>
                         </div>
                       </div>
                       <!-- END timeline item -->
                       <div>
                         <i class="far fa-clock bg-gray"></i>
+                      </div>
+                      <div>
+                        <div class="timeline-item">
+                          <span class="time"><a href="#"> 《了解全部</a></span>
+                        </div>
                       </div>
                   </div>
                   </div>
@@ -865,62 +792,47 @@
                       <!-- timeline time label -->
                       <div class="time-label">
                         <span class="bg-danger">
-                          2021.02.02
+                          粗心大意
                         </span>
                       </div>
 
-                      <div>
+                      <div th:each="badRecord, index:${badRecordList}" th:if="${index.count} lt 3">
                         <i class="fas fa-user bg-info"></i>
 
                         <div class="timeline-item">
 
-                          <h3 class="timeline-header border-0"><a href="#">2021.01.28 一次性手套</a>：弄丢了
+                          <h3 class="timeline-header border-0"><a href="#" th:text="${#dates.format(badRecord.applyTime, 'yyyy-MM-dd')+ badRecord.name+'('+#numbers.formatInteger(badRecord.applyNum, 0)+badRecord.unit+')'}">2021.01.28 一次性手套</a>：[[${badRecord.memo}]]
                           </h3>
                         </div>
                       </div>
                       <!-- END timeline item -->
                       <!-- timeline item -->
-                      <div>
-                        <i class="fas fa-user bg-info"></i>
 
-                        <div class="timeline-item">
-
-                          <h3 class="timeline-header border-0"><a href="#">2021.01.28 软管申请</a>：进水坏了
-                          </h3>
-                        </div>
-                      </div>
-                      <!-- END timeline item -->
                       <!-- timeline time label -->
                       <div class="time-label">
                         <span class="bg-success">
-                          2021.01.30
+                          脑阔疼
                         </span>
                       </div>
                       <!-- /.timeline-label -->
-					  <div>
+                      <div th:each="badRecord, index:${badRecordList}" th:if="${index.count} gt 2">
                         <i class="fas fa-user bg-info"></i>
 
                         <div class="timeline-item">
 
-                          <h3 class="timeline-header border-0"><a href="#">2021.01.29 阿米洛键盘</a>：本身就无法使用
-                          </h3>
-                        </div>
-                      </div>
-					  <div>
-                        <i class="fas fa-user bg-info"></i>
-
-                        <div class="timeline-item">
-
-                          <h3 class="timeline-header border-0"><a href="#">2021.01.29 ipad11</a>：顶撞领导
+                          <h3 class="timeline-header border-0"><a href="#" th:text="${#dates.format(badRecord.applyTime, 'yyyy-MM-dd')+ badRecord.name+'('+#numbers.formatInteger(badRecord.applyNum, 0)+badRecord.unit+')'}">2021.01.28 一次性手套</a>：[[${badRecord.memo}]]
                           </h3>
                         </div>
                       </div>
 
-                      <!-- END timeline item -->
-                      <!-- timeline item -->
 					  <!-- END timeline item -->
                       <div>
                         <i class="far fa-clock bg-gray"></i>
+                      </div>
+                      <div>
+                        <div class="timeline-item">
+                          <span class="time"><a href="#"> 《了解全部</a></span>
+                        </div>
                       </div>
                   </div>          
                 </div>
@@ -945,7 +857,7 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
+  <footer class="main-footer" th:fragment="footer">
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 1.1.0-Dev
     </div>
@@ -966,7 +878,7 @@
 <script src="../dist/js/demo.js"></script>
 
 <!--自定义样式-->
-<script src="../myself/index.js"></script>
+<script src="../myself/person_index.js"></script>
 
 </body>
 </html>

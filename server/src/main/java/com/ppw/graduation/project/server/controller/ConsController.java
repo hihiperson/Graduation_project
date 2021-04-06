@@ -1,14 +1,16 @@
 package com.ppw.graduation.project.server.controller;
 
+
+import com.ppw.graduation.project.model.entity.ApplyCons;
+import com.ppw.graduation.project.server.service.ConsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 /**
  * @version 1.0
@@ -24,35 +26,21 @@ public class ConsController {
 
     private static final Logger log  = LoggerFactory.getLogger(ConsController.class);
 
+    @Autowired
+    private ConsService consService;
+
     //TODO: 展示商品详情
-    @RequestMapping("/detailByName")
-    public ModelAndView detailByName(@RequestParam("name")String name, HttpServletRequest request){
-        HttpSession session = request.getSession();
+    @RequestMapping("/sub_cons")
+    public ModelAndView sub_cons(ApplyCons applyCons){
         ModelAndView modelAndView = new ModelAndView();
-        if (session.getAttribute("user")!=null){
-            if (name!=""||!name.equals("")||name!=null){
-                System.out.println("name========"+name);
+        if (applyCons!=null){
+            int res = consService.applyCons(applyCons);
+            if (res>0){
+                modelAndView.setViewName("redirect:/index2/AllCons");
             }
-
-            modelAndView.setViewName("details.html");
-        }else{
-            modelAndView.setViewName("login");
+        }else {
+            modelAndView.setViewName("redirect:/index2/DetailCons?cid="+applyCons.getCid());;
         }
-
-        //查询所有耗材的选项
         return modelAndView;
     }
-    @RequestMapping("/detailById")
-    public ModelAndView detailById(@RequestParam("cid")int cid, HttpServletRequest request){
-        HttpSession session = request.getSession();
-        if (session.getAttribute("user")!=null){
-            System.out.println(session.getAttribute("user"));
-        }
-        System.out.println("cid========"+cid);
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("details.html");
-        //查询所有耗材的选项
-        return modelAndView;
-    }
-
 }

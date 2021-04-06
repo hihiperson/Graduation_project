@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ppw.graduation.project.model.mapper.ApplyConsMapper" >
+  <resultMap id="BaseResultMap" type="com.ppw.graduation.project.model.entity.ApplyCons" >
+    <id column="aid" property="aid" jdbcType="INTEGER" />
+    <result column="cid" property="cid" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="apply_num" property="applyNum" jdbcType="DECIMAL" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="apply_time" property="applyTime" jdbcType="TIMESTAMP" />
+    <result column="apply_day" property="applyDay" jdbcType="INTEGER" />
+    <result column="apply_reson" property="applyReson" jdbcType="VARCHAR" />
+    <result column="is_active" property="isActive" jdbcType="TINYINT" />
+    <result column="keyword" property="keyword" jdbcType="VARCHAR" />
+    <result column="apply_state_id" property="applyStateId" jdbcType="TINYINT" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    aid, cid, user_id, apply_num, create_time, apply_time, apply_day, apply_reson, is_active, 
+    keyword, apply_state_id, memo
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from apply_cons
+    where aid = #{aid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from apply_cons
+    where aid = #{aid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ppw.graduation.project.model.entity.ApplyCons" >
+    insert into apply_cons (aid, cid, user_id, 
+      apply_num, create_time, apply_time, 
+      apply_day, apply_reson, is_active, 
+      keyword, apply_state_id, memo
+      )
+    values (#{aid,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{applyNum,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{applyTime,jdbcType=TIMESTAMP}, 
+      #{applyDay,jdbcType=INTEGER}, #{applyReson,jdbcType=VARCHAR}, #{isActive,jdbcType=TINYINT}, 
+      #{keyword,jdbcType=VARCHAR}, #{applyStateId,jdbcType=TINYINT}, #{memo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ppw.graduation.project.model.entity.ApplyCons" >
+    insert into apply_cons
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="aid != null" >
+        aid,
+      </if>
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="applyNum != null" >
+        apply_num,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="applyTime != null" >
+        apply_time,
+      </if>
+      <if test="applyDay != null" >
+        apply_day,
+      </if>
+      <if test="applyReson != null" >
+        apply_reson,
+      </if>
+      <if test="isActive != null" >
+        is_active,
+      </if>
+      <if test="keyword != null" >
+        keyword,
+      </if>
+      <if test="applyStateId != null" >
+        apply_state_id,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="aid != null" >
+        #{aid,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null" >
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="applyNum != null" >
+        #{applyNum,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyTime != null" >
+        #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyDay != null" >
+        #{applyDay,jdbcType=INTEGER},
+      </if>
+      <if test="applyReson != null" >
+        #{applyReson,jdbcType=VARCHAR},
+      </if>
+      <if test="isActive != null" >
+        #{isActive,jdbcType=TINYINT},
+      </if>
+      <if test="keyword != null" >
+        #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="applyStateId != null" >
+        #{applyStateId,jdbcType=TINYINT},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ppw.graduation.project.model.entity.ApplyCons" >
+    update apply_cons
+    <set >
+      <if test="cid != null" >
+        cid = #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="applyNum != null" >
+        apply_num = #{applyNum,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyTime != null" >
+        apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyDay != null" >
+        apply_day = #{applyDay,jdbcType=INTEGER},
+      </if>
+      <if test="applyReson != null" >
+        apply_reson = #{applyReson,jdbcType=VARCHAR},
+      </if>
+      <if test="isActive != null" >
+        is_active = #{isActive,jdbcType=TINYINT},
+      </if>
+      <if test="keyword != null" >
+        keyword = #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="applyStateId != null" >
+        apply_state_id = #{applyStateId,jdbcType=TINYINT},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where aid = #{aid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ppw.graduation.project.model.entity.ApplyCons" >
+    update apply_cons
+    set cid = #{cid,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      apply_num = #{applyNum,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      apply_day = #{applyDay,jdbcType=INTEGER},
+      apply_reson = #{applyReson,jdbcType=VARCHAR},
+      is_active = #{isActive,jdbcType=TINYINT},
+      keyword = #{keyword,jdbcType=VARCHAR},
+      apply_state_id = #{applyStateId,jdbcType=TINYINT},
+      memo = #{memo,jdbcType=VARCHAR}
+    where aid = #{aid,jdbcType=INTEGER}
+  </update>
+
+  <!--更改不良记录-->
+  <update id="updateStateAndMemoByUserId" parameterType="com.ppw.graduation.project.model.dto.NoReturnDTO" keyProperty="aid" useGeneratedKeys="true">
+    update apply_cons
+    <set >
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+        apply_state_id = 7,
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where aid = #{aid,jdbcType=INTEGER}
+  </update>
+  <!--<update id="updateStateAndMemoByUserId" keyProperty="aid" useGeneratedKeys="true">
+    update apply_cons set create_time = #{createTime,jdbcType=TIMESTAMP},
+        apply_state_id = 7,
+        memo = #{memo,jdbcType=VARCHAR},
+    where user_id = #{userId,jdbcType=VARCHAR}
+    and cid = #{cid,jdbcType=VARCHAR}
+  </update>-->
+</mapper>
